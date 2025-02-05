@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,7 +53,7 @@ dependencies {
     implementation(libs.androidx.material3)
 
     //retrofit
-    implementation (libs.retrofit.vinsertlatestversion)
+    implementation(libs.retrofit.vinsertlatestversion)
 
     implementation(libs.converter.gson)
 
@@ -59,7 +61,11 @@ dependencies {
     implementation(libs.okhttp)
 
     //MOSHI
-    implementation (libs.converter.moshi)
+    implementation(libs.converter.moshi)
+
+    // Dagger Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
 
     // Database
     implementation(libs.androidx.room.runtime)
@@ -73,4 +79,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+kapt {
+    correctErrorTypes = true
 }
