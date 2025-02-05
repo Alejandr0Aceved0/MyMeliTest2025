@@ -6,5 +6,5 @@ import com.ingeacev.mymeliaplication.home.data.model.remote.CategoriesDto
 
 interface GetCategoriesRemoteDataSource {
 
-    suspend fun getCategories(): Resource<List<CategoriesDto>?>
+    suspend fun getCategories(): Resource<List<CategoriesDto>>
 }

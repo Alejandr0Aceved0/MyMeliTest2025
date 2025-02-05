@@ -5,16 +5,13 @@ import com.ingeacev.mymeliaplication.core.data.service.ApiServiceGenerator
 import com.ingeacev.mymeliaplication.core.utils.ResourceBuilder
 import retrofit2.Response
 
-/**
- * @author Juan Camilo Collantes Tovar on 09/07/2024
- * **/
 abstract class BaseDataSource<S>(
     private val apiServiceGenerator: ApiServiceGenerator
 ) {
 
-    suspend fun <T> consumeService(
+    protected suspend fun <T> consumeService(
         serviceClass: Class<S>,
-        responseCall: suspend (S) -> Response<T?>
+        responseCall: suspend S.() -> Response<T?>
     ): Resource<T?> {
         var resource: Resource<T?>
 

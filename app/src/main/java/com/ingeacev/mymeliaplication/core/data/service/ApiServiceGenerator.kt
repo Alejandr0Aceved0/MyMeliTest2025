@@ -18,8 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-
-
 class ApiServiceGenerator(
     private val baseUrl: String,
     private val headers: MutableMap<String, String>? = null,
