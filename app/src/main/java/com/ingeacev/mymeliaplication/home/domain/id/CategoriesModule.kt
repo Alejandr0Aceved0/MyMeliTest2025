@@ -1,5 +1,9 @@
 package com.ingeacev.mymeliaplication.home.domain.id
 
+/**
+ * Created by Alejandro Acevedo on 06,febrero,2025
+ */
+
 import com.ingeacev.mymeliaplication.core.data.service.ApiServiceGenerator
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSource
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSourceImpl
@@ -34,13 +38,4 @@ object CategoriesModule {
             apiServiceGenerator
         )
     }
-
-
-//    @Provides
-//    @Singleton
-//    fun provideSendAbandonedDocumentsUseCase(
-//        abandonedDocumentsRepository: AbandonedDocumentsRepository
-//    ): SendAbandonedDocumentsUseCase {
-//        return SendAbandonedDocumentsUseCaseImpl(abandonedDocumentsRepository)
-//    }
 }

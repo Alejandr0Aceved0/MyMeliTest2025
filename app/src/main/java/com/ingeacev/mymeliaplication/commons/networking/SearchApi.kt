@@ -10,15 +10,15 @@ import retrofit2.http.Query
 interface SearchApi {
 
     @GET("/sites/MLA/categories?category=MLA1055")
-    suspend fun getCategories(): Response<List<CategoriesDto>>
+    suspend fun getCategories(): Response<List<CategoriesDto>?>
 
     @GET("/sites/MLA/search?q={value}")
     suspend fun searchByInputChange(
         @Query("value") query: String
-    ): Response<SearchResponseDto>
+    ): Response<SearchResponseDto?>
 
     @GET("/items/{value}/description")
     suspend fun getItemDescription(
         @Query("value") query: String
-    ): Response<ItemDescriptionResponseDto>
+    ): Response<ItemDescriptionResponseDto?>
 }

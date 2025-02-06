@@ -1,5 +1,9 @@
 package com.ingeacev.mymeliaplication.home.data.model.remote
 
+/**
+ * Created by Alejandro Acevedo on 06,febrero,2025
+ */
+
 import com.google.gson.annotations.SerializedName
 
 data class SearchResponseDto(
