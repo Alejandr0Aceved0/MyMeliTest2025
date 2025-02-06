@@ -1,4 +1,4 @@
-package com.ingeacev.mymeliaplication.home.data.remote_datasource
+package com.ingeacev.mymeliaplication.home.data.datasource.remote
 
 
 import com.ingeacev.mymeliaplication.core.data.model.Resource

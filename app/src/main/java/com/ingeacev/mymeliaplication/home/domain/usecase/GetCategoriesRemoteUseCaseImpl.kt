@@ -1,0 +1,16 @@
+package com.ingeacev.mymeliaplication.home.domain.usecase
+
+import com.ingeacev.mymeliaplication.core.data.model.Resource
+import com.ingeacev.mymeliaplication.home.data.model.remote.CategoriesDto
+import com.ingeacev.mymeliaplication.home.data.repository.CategoriesRepository
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class GetCategoriesRemoteUseCaseImpl @Inject constructor(
+    private val categoriesRepository: CategoriesRepository
+) : GetCategoriesRemoteUseCase {
+
+    override suspend fun invoke(): Flow<Resource<List<CategoriesDto>>> {
+        return categoriesRepository.getCategories()
+    }
+}

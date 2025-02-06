@@ -9,9 +9,9 @@ abstract class BaseDataSource<S>(
     private val apiServiceGenerator: ApiServiceGenerator
 ) {
 
-    protected suspend fun <T> consumeService(
+    suspend fun <T> consumeService(
         serviceClass: Class<S>,
-        responseCall: suspend S.() -> Response<T?>
+        responseCall: suspend (S) -> Response<T?>
     ): Resource<T?> {
         var resource: Resource<T?>
 

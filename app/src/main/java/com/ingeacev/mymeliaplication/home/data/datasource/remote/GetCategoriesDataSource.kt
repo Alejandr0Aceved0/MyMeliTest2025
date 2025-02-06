@@ -1,10 +1,10 @@
-package com.ingeacev.mymeliaplication.home.data.remote_datasource
+package com.ingeacev.mymeliaplication.home.data.datasource.remote
 
 import com.ingeacev.mymeliaplication.core.data.model.Resource
 import com.ingeacev.mymeliaplication.home.data.model.remote.CategoriesDto
 
 
-interface GetCategoriesRemoteDataSource {
+interface GetCategoriesDataSource {
 
     suspend fun getCategories(): Resource<List<CategoriesDto>>
 }
