@@ -9,8 +9,8 @@ import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDa
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSourceImpl
 import com.ingeacev.mymeliaplication.home.data.repository.CategoriesRepository
 import com.ingeacev.mymeliaplication.home.data.repository.CategoriesRepositoryImpl
-import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesRemoteUseCase
-import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesRemoteUseCaseImpl
+import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesUseCase
+import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,8 +45,8 @@ object CategoriesModule {
     @Singleton
     fun provideCategoriesUseCases(
         categoriesRepository: CategoriesRepository
-    ): GetCategoriesRemoteUseCase {
-        return GetCategoriesRemoteUseCaseImpl(
+    ): GetCategoriesUseCase {
+        return GetCategoriesUseCaseImpl(
             categoriesRepository
         )
     }

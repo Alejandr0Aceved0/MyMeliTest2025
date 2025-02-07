@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
     //retrofit
     implementation(libs.retrofit.vinsertlatestversion)
@@ -64,7 +66,6 @@ dependencies {
     implementation(libs.converter.moshi)
 
     // Dagger Hilt
-
     implementation(libs.androidx.hilt.navigation.compose)
     implementation("androidx.navigation:navigation-compose:2.8.6")
     implementation("androidx.hilt:hilt-work:1.2.0")
