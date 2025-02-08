@@ -67,10 +67,13 @@ dependencies {
 
     // Dagger Hilt
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation("androidx.navigation:navigation-compose:2.8.6")
-    implementation("androidx.hilt:hilt-work:1.2.0")
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    //Images
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
 
 
