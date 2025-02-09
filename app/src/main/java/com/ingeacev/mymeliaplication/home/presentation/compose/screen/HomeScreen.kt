@@ -6,7 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ingeacev.mymeliaplication.commons.presentation.LoadingIndicator
 import com.ingeacev.mymeliaplication.core.data.model.Resource
-import com.ingeacev.mymeliaplication.ui.theme.Purple40
+import com.ingeacev.mymeliaplication.home.presentation.compose.HomeMainContent
 
 /**
  * Created by Alejandro Acevedo on 06,febrero,2025
@@ -30,16 +30,14 @@ fun HomeScreen(
         }
 
         is Resource.Loading -> {
-            LoadingIndicator(circularIndicatorColor = Purple40)
+            LoadingIndicator()
         }
 
         is Resource.Sleep -> TODO()
 
         is Resource.Success -> {
 
-            ProductsList(
-                data = value.data
-            )
+            HomeMainContent(value)
         }
     }
 }

@@ -4,28 +4,33 @@ package com.ingeacev.mymeliaplication.home.presentation.compose
  * Created by Alejandro Acevedo on 08,febrero,2025
  */
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 
 @Composable
 fun ProductCard(
@@ -36,22 +41,28 @@ fun ProductCard(
     condition: String,
     freeShipping: Boolean
 ) {
-    println(imageUrl)
-    Card(
-        shape = RoundedCornerShape(12.dp),
+
+    OutlinedCard(
+        shape = RoundedCornerShape(0.dp),
+        border = BorderStroke(2.dp, Color(0xFF00002A)),
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFDDE7F3),
+        ),
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
 
             AsyncImage(
-                model = imageUrl,
-                contentDescription = null,
-                contentScale = ContentScale.Inside,
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(imageUrl)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = "Image about the product",
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .sizeIn(maxWidth = 500.dp, maxHeight = 500.dp)
                     .aspectRatio(2/3f)
                     .clip(MaterialTheme.shapes.small)
             )
@@ -96,12 +107,12 @@ fun ProductCard(
 
 @Preview
 @Composable
-fun PreviewMarketplaceCard() {
+fun PreviewProductCard() {
     ProductCard(
         title = "Samsung Galaxy J4+ Dual Sim 32 Gb Negro",
         price = "19609",
         currency = "ARS",
-        imageUrl = "https://cdn.pixabay.com/photo/2024/12/28/03/20/parrot-9295172_1280.jpg",
+        imageUrl = "https://http2.mlstatic.com/D_889938-MLA40645964182_022020-I.jpg",
         condition = "Nuevo",
         freeShipping = true
     )
