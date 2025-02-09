@@ -7,10 +7,16 @@ package com.ingeacev.mymeliaplication.home.domain.id
 import com.ingeacev.mymeliaplication.core.data.service.ApiServiceGenerator
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSource
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSourceImpl
+import com.ingeacev.mymeliaplication.home.data.datasource.remote.SearchDataSource
+import com.ingeacev.mymeliaplication.home.data.datasource.remote.SearchDataSourceImpl
 import com.ingeacev.mymeliaplication.home.data.repository.CategoriesRepository
 import com.ingeacev.mymeliaplication.home.data.repository.CategoriesRepositoryImpl
+import com.ingeacev.mymeliaplication.home.data.repository.SearchRepository
+import com.ingeacev.mymeliaplication.home.data.repository.SearchRepositoryImpl
 import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesUseCase
 import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesUseCaseImpl
+import com.ingeacev.mymeliaplication.home.domain.usecase.SearchProductsUseCase
+import com.ingeacev.mymeliaplication.home.domain.usecase.SearchProductsUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +25,8 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object CategoriesModule {
+object ProductsModule {
+
     @Provides
     @Singleton
     fun provideCategoriesRepository(
@@ -29,7 +36,6 @@ object CategoriesModule {
             getCategoriesDataSource
         )
     }
-
 
     @Provides
     @Singleton
@@ -48,6 +54,36 @@ object CategoriesModule {
     ): GetCategoriesUseCase {
         return GetCategoriesUseCaseImpl(
             categoriesRepository
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(
+        searchDataSource: SearchDataSource
+    ): SearchRepository {
+        return SearchRepositoryImpl(
+            searchDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchDataSource(
+        apiServiceGenerator: ApiServiceGenerator,
+    ): SearchDataSource {
+        return SearchDataSourceImpl(
+            apiServiceGenerator
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchUseCases(
+        searchRepository: SearchRepository
+    ): SearchProductsUseCase {
+        return SearchProductsUseCaseImpl(
+            searchRepository
         )
     }
 }

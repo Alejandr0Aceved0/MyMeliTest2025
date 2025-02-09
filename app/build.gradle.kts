@@ -52,11 +52,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation(libs.kotlinx.serialization.json)
 
     //retrofit
     implementation(libs.retrofit.vinsertlatestversion)
-
     implementation(libs.converter.gson)
 
     // Network
@@ -74,8 +73,6 @@ dependencies {
     //Images
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
-
-
 
     // Database
     implementation(libs.androidx.room.runtime)

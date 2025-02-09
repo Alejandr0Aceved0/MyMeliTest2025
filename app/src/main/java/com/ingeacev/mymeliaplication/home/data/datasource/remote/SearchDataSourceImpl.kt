@@ -12,9 +12,9 @@ import com.ingeacev.mymeliaplication.home.data.model.remote.ItemDescriptionRespo
 import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
 import javax.inject.Inject
 
-class SearchRemoteDataSourceImpl @Inject constructor(
+class SearchDataSourceImpl @Inject constructor(
     apiServiceGenerator: ApiServiceGenerator
-) : SearchRemoteDataSource,
+) : SearchDataSource,
     BaseDataSource<SearchApi>(
         apiServiceGenerator
     ) {
@@ -26,6 +26,12 @@ class SearchRemoteDataSourceImpl @Inject constructor(
             }
         } catch (e: Exception) {
             Resource.GenericDataError()
+        }
+    }
+
+    override suspend fun getDefaultProducts(): Resource<SearchResponseDto?> {
+        return consumeService(SearchApi::class.java) {
+            it.searchByDefault()
         }
     }
 

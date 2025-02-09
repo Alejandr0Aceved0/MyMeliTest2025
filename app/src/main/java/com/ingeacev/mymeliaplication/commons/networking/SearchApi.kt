@@ -17,6 +17,9 @@ interface SearchApi {
         @Query("value") query: String
     ): Response<SearchResponseDto?>
 
+    @GET("/sites/MLA/search?q=Motorola%20G6")
+    suspend fun searchByDefault(): Response<SearchResponseDto?>
+
     @GET("/items/{value}/description")
     suspend fun getItemDescription(
         @Query("value") query: String

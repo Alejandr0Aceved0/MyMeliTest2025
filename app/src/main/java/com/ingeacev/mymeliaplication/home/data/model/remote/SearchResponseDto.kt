@@ -5,6 +5,7 @@ package com.ingeacev.mymeliaplication.home.data.model.remote
  */
 
 import com.google.gson.annotations.SerializedName
+import java.math.BigInteger
 
 data class SearchResponseDto(
     @SerializedName("site_id") val siteId: String,
@@ -79,7 +80,7 @@ data class AttributeDto(
     @SerializedName("value_struct") val valueStruct: Any?,
     @SerializedName("attribute_group_id") val attributeGroupId: String,
     @SerializedName("attribute_group_name") val attributeGroupName: String,
-    @SerializedName("source") val source: Int,
+    @SerializedName("source") val source: BigInteger,
     @SerializedName("id") val id: String
 )
 

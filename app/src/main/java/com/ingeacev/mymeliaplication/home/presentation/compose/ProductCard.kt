@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 
 @Composable
-fun MarketplaceCard(
+fun ProductCard(
     title: String,
     price: String,
     currency: String,
@@ -87,7 +87,7 @@ fun MarketplaceCard(
 @Preview
 @Composable
 fun PreviewMarketplaceCard() {
-    MarketplaceCard(
+    ProductCard(
         title = "Samsung Galaxy J4+ Dual Sim 32 Gb Negro",
         price = "19609",
         currency = "ARS",
