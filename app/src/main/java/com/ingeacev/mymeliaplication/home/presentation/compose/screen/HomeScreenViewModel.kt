@@ -27,8 +27,8 @@ class HomeScreenViewModel @Inject() constructor(
     private val coroutineDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _getDefaultProductsState = MutableStateFlow<Resource<List<SearchResponseDto>>>(Resource.Loading())
-    val getDefaultProductsState: StateFlow<Resource<List<SearchResponseDto>>>
+    private val _getDefaultProductsState = MutableStateFlow<Resource<SearchResponseDto>>(Resource.Loading())
+    val getDefaultProductsState: StateFlow<Resource<SearchResponseDto>>
         get() = _getDefaultProductsState.asStateFlow()
 
     fun getDefaultProducts() {

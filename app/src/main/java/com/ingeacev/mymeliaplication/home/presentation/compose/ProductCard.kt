@@ -6,12 +6,14 @@ package com.ingeacev.mymeliaplication.home.presentation.compose
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -43,16 +45,19 @@ fun ProductCard(
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
+
             AsyncImage(
                 model = imageUrl,
                 contentDescription = null,
+                contentScale = ContentScale.Inside,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp)
-                    .clip(RoundedCornerShape(12.dp)),
-                contentScale = ContentScale.Crop
+                    .aspectRatio(2/3f)
+                    .clip(MaterialTheme.shapes.small)
             )
+
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = title,
                 fontSize = 16.sp,
@@ -60,19 +65,24 @@ fun ProductCard(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = "$currency $price",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF388E3C)
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = "Condición: $condition",
                 fontSize = 14.sp,
                 color = Color.Gray
             )
+
             if (freeShipping) {
                 Text(
                     text = "Envío gratis",

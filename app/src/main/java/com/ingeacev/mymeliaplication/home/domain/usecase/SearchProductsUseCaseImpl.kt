@@ -14,11 +14,11 @@ class SearchProductsUseCaseImpl @Inject constructor(
     private val searchRepository: SearchRepository
 ) : SearchProductsUseCase {
 
-    override suspend fun getDefaultProducts(): Flow<Resource<List<SearchResponseDto>>> {
+    override suspend fun getDefaultProducts(): Flow<Resource<SearchResponseDto>> {
         return searchRepository.getDefaultProducts()
     }
 
-    override suspend fun searchProducts(query: String): Flow<Resource<List<SearchResponseDto>>> {
+    override suspend fun searchProducts(query: String): Flow<Resource<SearchResponseDto>> {
         return searchRepository.searchProduct(query = query)
     }
 }

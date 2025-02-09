@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface SearchProductsUseCase {
 
-    suspend fun getDefaultProducts(): Flow<Resource<List<SearchResponseDto>>>
+    suspend fun getDefaultProducts(): Flow<Resource<SearchResponseDto>>
 
-    suspend fun searchProducts(query: String): Flow<Resource<List<SearchResponseDto>>>
+    suspend fun searchProducts(query: String): Flow<Resource<SearchResponseDto>>
 }

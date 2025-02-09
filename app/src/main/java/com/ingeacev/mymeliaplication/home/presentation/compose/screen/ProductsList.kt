@@ -16,28 +16,27 @@ import com.ingeacev.mymeliaplication.home.presentation.compose.ProductCard
  */
 
 @Composable
-fun ProductsList(data: List<SearchResponseDto>?) {
-    if (!data.isNullOrEmpty()) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+fun ProductsList(data: SearchResponseDto?) {
 
-            data[0].results.forEach {
-                item {
-                    ProductCard(
-                        title = it.title,
-                        price = it.installments.amount.toString(),
-                        currency = it.currencyId,
-                        imageUrl = it.thumbnail,
-                        condition = it.condition,
-                        freeShipping = it.shipping.freeShipping
-                    )
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
-                    Spacer(modifier = Modifier.padding(10.dp))
-                }
+        data?.results?.forEach {
+            item {
+                ProductCard(
+                    title = it.title,
+                    price = it.installments.amount.toString(),
+                    currency = it.currencyId,
+                    imageUrl = it.thumbnail,
+                    condition = it.condition,
+                    freeShipping = it.shipping.freeShipping
+                )
+
+                Spacer(modifier = Modifier.padding(10.dp))
             }
         }
     }

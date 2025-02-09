@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface SearchRepository {
 
-    suspend fun getDefaultProducts(): Flow<Resource<List<SearchResponseDto>>>
+    suspend fun getDefaultProducts(): Flow<Resource<SearchResponseDto>>
 
-    suspend fun searchProduct(query: String): Flow<Resource<List<SearchResponseDto>>?>
+    suspend fun searchProduct(query: String): Flow<Resource<SearchResponseDto>>
 }

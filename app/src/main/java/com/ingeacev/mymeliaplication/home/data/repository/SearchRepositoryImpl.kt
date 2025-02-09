@@ -16,7 +16,7 @@ class SearchRepositoryImpl @Inject constructor(
     //TODO: ADD GetCategoriesLocalDataSource
 ) : SearchRepository {
 
-    override suspend fun getDefaultProducts(): Flow<Resource<List<SearchResponseDto>>> {
+    override suspend fun getDefaultProducts(): Flow<Resource<SearchResponseDto>> {
         return flow {
 
             when (val response = searchDataSource.getDefaultProducts()) {
@@ -36,7 +36,7 @@ class SearchRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun searchProduct(query: String): Flow<Resource<List<SearchResponseDto>>?> {
+    override suspend fun searchProduct(query: String): Flow<Resource<SearchResponseDto>> {
         return flow {
             when (val response = searchDataSource.searchByInputChange(query = query)) {
                 is Resource.Success -> {
