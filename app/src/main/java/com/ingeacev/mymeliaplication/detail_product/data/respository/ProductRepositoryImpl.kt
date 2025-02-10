@@ -8,6 +8,7 @@ import com.ingeacev.mymeliaplication.core.data.model.Resource
 import com.ingeacev.mymeliaplication.detail_product.data.datasource.remote.GetProductDescriptionDataSource
 import com.ingeacev.mymeliaplication.detail_product.data.model.remote.toItemDescription
 import com.ingeacev.mymeliaplication.detail_product.data.model.ui.ItemDescription
+import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResultDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -17,11 +18,11 @@ class ProductRepositoryImpl @Inject constructor(
 ) : ProductRepository {
 
 
-    override suspend fun getProductDescription(product: String): Flow<Resource<ItemDescription>> {
+    override fun getProductDescription(product: SearchResultDto): Flow<Resource<ItemDescription>> {
         return flow {
-            when (val response = getProductDescriptionDataSource.getItemDescription(product)) {
+            when (val response = getProductDescriptionDataSource.getItemDescription(product.id.toString())) {
                 is Resource.Success -> {
-                    emit(Resource.Success(response.data?.toItemDescription()))
+                    emit(Resource.Success(response.data?.toItemDescription(product)))
                 }
 
                 else -> {

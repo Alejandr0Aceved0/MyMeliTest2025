@@ -7,7 +7,6 @@ package com.ingeacev.mymeliaplication.home.presentation.compose.screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ingeacev.mymeliaplication.core.data.model.Resource
-import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
 import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
 import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesUseCase
 import com.ingeacev.mymeliaplication.home.domain.usecase.SearchProductsUseCase

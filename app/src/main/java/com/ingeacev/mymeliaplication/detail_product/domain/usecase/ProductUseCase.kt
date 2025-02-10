@@ -6,10 +6,10 @@ package com.ingeacev.mymeliaplication.detail_product.domain.usecase
 
 import com.ingeacev.mymeliaplication.core.data.model.Resource
 import com.ingeacev.mymeliaplication.detail_product.data.model.ui.ItemDescription
-import com.ingeacev.mymeliaplication.home.data.model.remote.CategoriesDto
+import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResultDto
 import kotlinx.coroutines.flow.Flow
 
-interface ProductUseCase {
+fun interface ProductUseCase {
 
-    suspend operator fun invoke(product: String): Flow<Resource<ItemDescription>>
+    operator fun invoke(product: SearchResultDto): Flow<Resource<ItemDescription>>
 }

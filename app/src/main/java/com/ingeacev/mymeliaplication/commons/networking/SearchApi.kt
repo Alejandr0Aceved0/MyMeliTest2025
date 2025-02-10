@@ -5,6 +5,7 @@ import com.ingeacev.mymeliaplication.detail_product.data.model.remote.ItemDescri
 import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SearchApi {
@@ -22,6 +23,7 @@ interface SearchApi {
 
     @GET("/items/{value}/description")
     suspend fun getItemDescription(
-        @Query("value") query: String
+        @Path("value") itemId: String
     ): Response<ItemDescriptionResponseDto?>
+
 }

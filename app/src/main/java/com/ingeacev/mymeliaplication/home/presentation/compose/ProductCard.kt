@@ -5,6 +5,8 @@ package com.ingeacev.mymeliaplication.home.presentation.compose
  */
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -21,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -44,7 +47,8 @@ fun ProductCard(
     currency: String? = "",
     imageUrl: String? = "",
     condition: String? = "",
-    freeShipping: Boolean? = false
+    freeShipping: Boolean? = false,
+    onActivityClick: () -> Unit
 ) {
 
     OutlinedCard(
@@ -52,7 +56,18 @@ fun ProductCard(
         border = BorderStroke(spacing_xxxxs, Color(0xFF00002A)),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(spacing_xxs),
+            .padding(spacing_xxs)
+            .clickable { onActivityClick() }
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onPress = {
+                        tryAwaitRelease()
+                    },
+                    onTap = {
+                        onActivityClick()
+                    }
+                )
+            },
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFDDE7F3),
         ),
@@ -68,7 +83,7 @@ fun ProductCard(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .sizeIn(maxWidth = 500.dp, maxHeight = 500.dp)
-                    .aspectRatio(2/3f)
+                    .aspectRatio(2 / 3f)
                     .clip(MaterialTheme.shapes.small)
             )
 
@@ -119,6 +134,7 @@ fun PreviewProductCard() {
         currency = "ARS",
         imageUrl = "https://http2.mlstatic.com/D_889938-MLA40645964182_022020-I.jpg",
         condition = "Nuevo",
-        freeShipping = true
+        freeShipping = true,
+        onActivityClick = {}
     )
 }
