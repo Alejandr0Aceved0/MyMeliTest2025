@@ -12,9 +12,9 @@ interface SearchApi {
     @GET("/sites/MLA/categories?category=MLA1055")
     suspend fun getCategories(): Response<List<CategoriesDto>?>
 
-    @GET("/sites/MLA/search?q={value}")
+    @GET("/sites/MLA/search")
     suspend fun searchByInputChange(
-        @Query("value") query: String
+        @Query("q") query: String
     ): Response<SearchResponseDto?>
 
     @GET("/sites/MLA/search?q=Motorola%20G6")

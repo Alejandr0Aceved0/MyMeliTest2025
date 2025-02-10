@@ -12,8 +12,9 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
+import com.ingeacev.mymeliaplication.commons.utils.spacing_xxs
+import com.ingeacev.mymeliaplication.commons.utils.spacing_xxxs
+import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
 import com.ingeacev.mymeliaplication.home.presentation.compose.ProductCard
 
 /**
@@ -21,19 +22,19 @@ import com.ingeacev.mymeliaplication.home.presentation.compose.ProductCard
  */
 
 @Composable
-fun ProductsList(data: SearchResponseDto?) {
+fun ProductsList(data: SearchItemResult?) {
 
     LazyVerticalGrid(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFDDE7F3))
-            .padding(10.dp),
+            .padding(spacing_xxs),
         columns = GridCells.Fixed(2),
         state = rememberLazyGridState(),
-        contentPadding = PaddingValues(5.dp),
+        contentPadding = PaddingValues(spacing_xxxs),
         reverseLayout = false,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(spacing_xxs),
+        horizontalArrangement = Arrangement.spacedBy(spacing_xxs),
         userScrollEnabled = true
     ) {
 
@@ -42,14 +43,14 @@ fun ProductsList(data: SearchResponseDto?) {
 
                 ProductCard(
                     title = it.title,
-                    price = it.installments.amount.toString(),
+                    price = it.installments?.amount.toString(),
                     currency = it.currencyId,
                     imageUrl = it.thumbnail,
                     condition = it.condition,
-                    freeShipping = it.shipping.freeShipping
+                    freeShipping = it.shipping?.freeShipping
                 )
 
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(spacing_xxs))
             }
         }
     }

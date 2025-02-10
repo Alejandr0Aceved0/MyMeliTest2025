@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ingeacev.mymeliaplication.core.data.model.Resource
 import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
+import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
 import com.ingeacev.mymeliaplication.home.domain.usecase.GetCategoriesUseCase
 import com.ingeacev.mymeliaplication.home.domain.usecase.SearchProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,9 +28,24 @@ class HomeScreenViewModel @Inject() constructor(
     private val coroutineDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _getDefaultProductsState = MutableStateFlow<Resource<SearchResponseDto>>(Resource.Loading())
-    val getDefaultProductsState: StateFlow<Resource<SearchResponseDto>>
+    private val _getDefaultProductsState = MutableStateFlow<Resource<SearchItemResult>>(Resource.Loading())
+    val getDefaultProductsState: StateFlow<Resource<SearchItemResult>>
         get() = _getDefaultProductsState.asStateFlow()
+
+    init {
+        getDefaultProducts()
+    }
+
+    fun searchProducts(query: String) {
+        viewModelScope.launch {
+
+            searchProductsUseCase.searchProducts(query).collectLatest { response ->
+                _getDefaultProductsState.update {
+                    response
+                }
+            }
+        }
+    }
 
     fun getDefaultProducts() {
         viewModelScope.launch(coroutineDispatcher) {
@@ -37,6 +53,7 @@ class HomeScreenViewModel @Inject() constructor(
                 _getDefaultProductsState.update {
                     response
                 }
+
             }
         }
     }

@@ -16,9 +16,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.ingeacev.mymeliaplication.core.data.model.Resource
-import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
+import com.ingeacev.mymeliaplication.commons.presentation.ModalSnackbar
+import com.ingeacev.mymeliaplication.commons.utils.spacing_xxxs
+import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
 import com.ingeacev.mymeliaplication.home.presentation.compose.screen.ProductsList
 
 /**
@@ -26,9 +26,13 @@ import com.ingeacev.mymeliaplication.home.presentation.compose.screen.ProductsLi
  */
 
 @Composable
-fun HomeMainContent(value: Resource.Success<SearchResponseDto>) {
-
+fun HomeMainContent(
+    value: SearchItemResult?,
+    onSearchQuery: (String) -> Unit
+) {
     var searchQuery by remember { mutableStateOf("") }
+    var showSnackbar by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf("") }
     val statusBarsInsets = WindowInsets.statusBars.asPaddingValues()
 
     Column(
@@ -36,19 +40,31 @@ fun HomeMainContent(value: Resource.Success<SearchResponseDto>) {
             .background(color = MaterialTheme.colorScheme.background)
             .padding(top = statusBarsInsets.calculateTopPadding())
     ) {
-
         SearchInput(
             query = searchQuery,
             onQueryChange = { searchQuery = it },
             onSearch = {
-                Log.d("Search", "Buscando: $searchQuery")
+                if (searchQuery.isBlank()) {
+                    showSnackbar = true
+                    message = "La búsqueda no puede estar vacía"
+                } else {
+                    Log.d("Search", "Buscando: $searchQuery")
+                    onSearchQuery(searchQuery)
+                }
             }
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(spacing_xxxs))
 
-        ProductsList(
-            data = value.data
+        ProductsList(data = value)
+    }
+
+    if (showSnackbar) {
+        ModalSnackbar(
+            message = message,
+            actionLabel = "OK",
+            onActionClick = { showSnackbar = false },
+            onDismiss = { showSnackbar = false }
         )
     }
 }

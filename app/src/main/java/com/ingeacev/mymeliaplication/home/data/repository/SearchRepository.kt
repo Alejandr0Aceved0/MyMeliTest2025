@@ -1,7 +1,7 @@
 package com.ingeacev.mymeliaplication.home.data.repository
 
 import com.ingeacev.mymeliaplication.core.data.model.Resource
-import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
+import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface SearchRepository {
 
-    suspend fun getDefaultProducts(): Flow<Resource<SearchResponseDto>>
+    suspend fun getDefaultProducts(): Flow<Resource<SearchItemResult>>
 
-    suspend fun searchProduct(query: String): Flow<Resource<SearchResponseDto>>
+    suspend fun searchProduct(query: String): Flow<Resource<SearchItemResult>>
 }

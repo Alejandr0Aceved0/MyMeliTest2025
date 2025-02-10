@@ -34,6 +34,7 @@ fun SearchInput(
     onSearch: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
     val focusManager = LocalFocusManager.current
 
     TextField(
@@ -81,7 +82,7 @@ fun SearchInput(
 fun SearchBarPreview() {
 
     SearchInput(
-        query = "mi busqueda",
+        query = "BMW I3",
         onQueryChange = { /**/ },
         onSearch = { Log.d("Search", "Buscando: ") }
     )
