@@ -1,4 +1,4 @@
-package com.ingeacev.mymeliaplication.home.presentation.compose.screen
+package com.ingeacev.mymeliaplication.detail_product.presentation.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -7,29 +7,30 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ingeacev.mymeliaplication.commons.presentation.GeneralErrorScreen
 import com.ingeacev.mymeliaplication.commons.presentation.LoadingIndicator
 import com.ingeacev.mymeliaplication.core.data.model.Resource
+import com.ingeacev.mymeliaplication.detail_product.presentation.compose.DetailProductMainContent
 import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResultDto
-import com.ingeacev.mymeliaplication.home.presentation.compose.HomeMainContent
 
 /**
  * Created by Alejandro Acevedo on 06,febrero,2025
  */
 
 @Composable
-fun HomeScreen(
-    homeScreenViewModel: HomeScreenViewModel = hiltViewModel(),
-    navigateToDetail: (SearchResultDto) -> Unit,
+fun DetailProductScreen(
+    detailProductScreenView: DetailProductScreenView = hiltViewModel(),
+    searchResultDto: SearchResultDto,
+    navigateBack: () -> Unit,
 ) {
 
     LaunchedEffect(key1 = Unit) {
-        homeScreenViewModel.getDefaultProducts()
+        detailProductScreenView.getProductDetails(searchResultDto)
     }
 
     when (val value =
-        homeScreenViewModel.getDefaultProductsState.collectAsStateWithLifecycle().value) {
+        detailProductScreenView.getProductProductsState.collectAsStateWithLifecycle().value) {
         is Resource.GenericDataError -> {
             GeneralErrorScreen(
                 errorTitle = value.errorMessage ?: "GenericError ",
-                onActionButtonClick = { homeScreenViewModel.getDefaultProducts() },
+                onActionButtonClick = { detailProductScreenView.getProductDetails(searchResultDto) },
                 actionButtonText = "TryAgain"
             )
         }
@@ -42,11 +43,13 @@ fun HomeScreen(
 
         is Resource.Success -> {
 
-            HomeMainContent(
-                value = value.data,
-                onSearchQuery = { query -> homeScreenViewModel.searchProducts(query) },
-                onNavigateToIncidentDetail = { searchResultDto -> navigateToDetail(searchResultDto) }
-            )
+            value.data?.let { product ->
+
+                DetailProductMainContent(
+                    value = product,
+                    navigateBack = navigateBack
+                )
+            }
         }
     }
 }

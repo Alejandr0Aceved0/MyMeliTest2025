@@ -5,6 +5,12 @@ package com.ingeacev.mymeliaplication.home.domain.id
  */
 
 import com.ingeacev.mymeliaplication.core.data.service.ApiServiceGenerator
+import com.ingeacev.mymeliaplication.detail_product.data.datasource.remote.GetProductDescriptionDataSource
+import com.ingeacev.mymeliaplication.detail_product.data.datasource.remote.GetProductDescriptionDataSourceImpl
+import com.ingeacev.mymeliaplication.detail_product.data.respository.ProductRepository
+import com.ingeacev.mymeliaplication.detail_product.data.respository.ProductRepositoryImpl
+import com.ingeacev.mymeliaplication.detail_product.domain.usecase.ProductUseCase
+import com.ingeacev.mymeliaplication.detail_product.domain.usecase.ProductUseCaseImpl
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSource
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.GetCategoriesDataSourceImpl
 import com.ingeacev.mymeliaplication.home.data.datasource.remote.SearchDataSource
@@ -84,6 +90,37 @@ object ProductsModule {
     ): SearchProductsUseCase {
         return SearchProductsUseCaseImpl(
             searchRepository
+        )
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideProductDescriptionRepository(
+        getProductDescriptionDataSource: GetProductDescriptionDataSource
+    ): ProductRepository {
+        return ProductRepositoryImpl(
+            getProductDescriptionDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductDescriptionDataSource(
+        apiServiceGenerator: ApiServiceGenerator,
+    ): GetProductDescriptionDataSource {
+        return GetProductDescriptionDataSourceImpl(
+            apiServiceGenerator
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductUseCases(
+        productRepository: ProductRepository
+    ): ProductUseCase {
+        return ProductUseCaseImpl(
+            productRepository
         )
     }
 }

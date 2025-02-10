@@ -1,10 +1,14 @@
 package com.ingeacev.mymeliaplication.core.navigation
 
+import android.net.Uri
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
+import com.google.gson.Gson
+import com.ingeacev.mymeliaplication.detail_product.presentation.screen.DetailProductScreen
+import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResultDto
 import com.ingeacev.mymeliaplication.home.presentation.compose.screen.HomeScreen
 
 /**
@@ -13,21 +17,27 @@ import com.ingeacev.mymeliaplication.home.presentation.compose.screen.HomeScreen
 
 @Composable
 fun NavigationWrapper() {
-
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Login) {
+    val gson = remember { Gson() }
 
-        composable<Login> {
-            LoginScreen() { navController.navigate(Home) }
-        }
+    NavHost(navController = navController, startDestination = Home) {
 
         composable<Home> {
-            HomeScreen()
+            HomeScreen { searchResultDto ->
+                val json = Uri.encode(gson.toJson(searchResultDto))
+                navController.navigate("details/$json")
+            }
         }
 
-        composable<Details> { backStackEntry ->
-            val details = backStackEntry.toRoute<Details>()
-            DetailScreen(details.name)
+        composable("details/{searchResultDto}") { backStackEntry ->
+
+            val json = backStackEntry.arguments?.getString("searchResultDto") ?: ""
+            val searchResultDto = gson.fromJson(json, SearchResultDto::class.java)
+
+            DetailProductScreen(
+                searchResultDto = searchResultDto,
+                navigateBack = { navController.navigateUp() }
+            )
         }
     }
 }

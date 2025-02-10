@@ -9,11 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.ingeacev.mymeliaplication.commons.utils.spacing_xxs
 import com.ingeacev.mymeliaplication.commons.utils.spacing_xxxs
+import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResultDto
 import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
 import com.ingeacev.mymeliaplication.home.presentation.compose.ProductCard
 
@@ -22,12 +23,14 @@ import com.ingeacev.mymeliaplication.home.presentation.compose.ProductCard
  */
 
 @Composable
-fun ProductsList(data: SearchItemResult?) {
+fun ProductsList(
+    data: SearchItemResult?,
+    onActivityClick: (activity: SearchResultDto) -> Unit) {
 
     LazyVerticalGrid(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFDDE7F3))
+            .background(MaterialTheme.colorScheme.background)
             .padding(spacing_xxs),
         columns = GridCells.Fixed(2),
         state = rememberLazyGridState(),
@@ -47,7 +50,8 @@ fun ProductsList(data: SearchItemResult?) {
                     currency = it.currencyId,
                     imageUrl = it.thumbnail,
                     condition = it.condition,
-                    freeShipping = it.shipping?.freeShipping
+                    freeShipping = it.shipping?.freeShipping,
+                    onActivityClick = { onActivityClick(it) }
                 )
 
                 Spacer(modifier = Modifier.padding(spacing_xxs))

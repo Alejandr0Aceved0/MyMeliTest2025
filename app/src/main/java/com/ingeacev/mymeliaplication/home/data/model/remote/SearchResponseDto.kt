@@ -6,6 +6,8 @@ package com.ingeacev.mymeliaplication.home.data.model.remote
 
 import com.google.gson.annotations.SerializedName
 import com.ingeacev.mymeliaplication.home.data.model.ui.SearchItemResult
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.math.BigInteger
 
 data class SearchResponseDto(
@@ -29,6 +31,7 @@ data class PagingDto(
     @SerializedName("primary_results") val primaryResults: Int? = 0,
 )
 
+@Serializable
 data class SearchResultDto(
     @SerializedName("id") val id: String? = "",
     @SerializedName("site_id") val siteId: String? = "",
@@ -54,6 +57,7 @@ data class SearchResultDto(
     @SerializedName("catalog_listing") val catalogListing: Boolean? = false,
 )
 
+@Serializable
 data class SellerDto(
     @SerializedName("id") val id: Int? = 0,
     @SerializedName("power_seller_status") val powerSellerStatus: String? = "",
@@ -61,7 +65,7 @@ data class SellerDto(
     @SerializedName("real_estate_agency") val realEstateAgency: Boolean? = false,
     @SerializedName("tags") val tags: List<String> = listOf(),
 )
-
+@Serializable
 data class InstallmentsDto(
     @SerializedName("quantity") val quantity: Int? = 0,
     @SerializedName("amount") val amount: Double? = 0.0,
@@ -69,6 +73,7 @@ data class InstallmentsDto(
     @SerializedName("currency_id") val currencyId: String? = ""
 )
 
+@Serializable
 data class ShippingDto(
     @SerializedName("free_shipping") val freeShipping: Boolean? = false,
     @SerializedName("mode") val mode: String? = "",
@@ -81,22 +86,26 @@ data class ShippingDto(
     @SerializedName("longitude") val longitude: String? = "",
 )
 
+
+@Serializable
 data class AttributeDto(
     @SerializedName("name") val name: String? = "",
     @SerializedName("value_id") val valueId: String?? = "",
     @SerializedName("value_name") val valueName: String? = "",
-    @SerializedName("value_struct") val valueStruct: Any?? = "",
     @SerializedName("attribute_group_id") val attributeGroupId: String? = "",
     @SerializedName("attribute_group_name") val attributeGroupName: String? = "",
-    @SerializedName("source") val source: BigInteger? = 0.toBigInteger(),
+    @Contextual @SerializedName("source") val source: BigInteger? = 0.toBigInteger(),
     @SerializedName("id") val id: String? = "",
 )
 
+
+@Serializable
 data class StateDto(
     @SerializedName("id") val id: String? = "",
     @SerializedName("name") val name: String? = "",
 )
 
+@Serializable
 data class CityDto(
     @SerializedName("id") val id: String? = "",
     @SerializedName("name") val name: String? = "",
