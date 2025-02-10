@@ -64,7 +64,7 @@ dependencies {
     //MOSHI
     implementation(libs.converter.moshi)
 
-    // Dagger Hilt
+    //Dagger Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)

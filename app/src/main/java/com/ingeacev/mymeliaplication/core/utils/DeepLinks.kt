@@ -21,7 +21,6 @@ fun openMercadoLibre(context: Context, itemId: String, permalink: String) {
     try {
         context.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
-        // Si la app de MercadoLibre no está instalada, abre en el navegador
         context.startActivity(Intent(Intent.ACTION_VIEW, webUri))
     }
 }
