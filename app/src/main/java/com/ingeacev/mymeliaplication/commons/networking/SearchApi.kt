@@ -1,7 +1,7 @@
 package com.ingeacev.mymeliaplication.commons.networking
 
 import com.ingeacev.mymeliaplication.home.data.model.remote.CategoriesDto
-import com.ingeacev.mymeliaplication.home.data.model.remote.ItemDescriptionResponseDto
+import com.ingeacev.mymeliaplication.detail_product.data.model.remote.ItemDescriptionResponseDto
 import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
