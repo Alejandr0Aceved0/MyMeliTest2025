@@ -8,7 +8,7 @@ import com.ingeacev.mymeliaplication.core.data.model.Resource
 import com.ingeacev.mymeliaplication.home.data.model.remote.CategoriesDto
 import kotlinx.coroutines.flow.Flow
 
-interface GetCategoriesRemoteUseCase {
+interface GetCategoriesUseCase {
 
     suspend operator fun invoke(): Flow<Resource<List<CategoriesDto>>>
 }

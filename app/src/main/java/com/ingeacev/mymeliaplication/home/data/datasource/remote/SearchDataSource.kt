@@ -8,9 +8,11 @@ import com.ingeacev.mymeliaplication.core.data.model.Resource
 import com.ingeacev.mymeliaplication.home.data.model.remote.ItemDescriptionResponseDto
 import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResponseDto
 
-interface SearchRemoteDataSource {
+interface SearchDataSource {
 
     suspend fun searchByInputChange(query: String): Resource<SearchResponseDto?>
+
+    suspend fun getDefaultProducts(): Resource<SearchResponseDto?>
 
     suspend fun geItemDescriptionById(query: String): Resource<ItemDescriptionResponseDto?>
 }

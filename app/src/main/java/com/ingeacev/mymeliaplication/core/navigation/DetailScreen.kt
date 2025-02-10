@@ -1,0 +1,36 @@
+package com.ingeacev.mymeliaplication.core.navigation
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.sp
+
+/**
+ * Created by Alejandro Acevedo on 06,febrero,2025
+ */
+
+@Composable
+fun DetailScreen(name: String) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Text(text = "Mi nombre es $name", fontSize = 25.sp)
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Button(onClick = { }) {
+            Text(text = "Navegar a la Home")
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+    }
+}

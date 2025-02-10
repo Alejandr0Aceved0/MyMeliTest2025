@@ -18,10 +18,9 @@ class CategoriesRepositoryImpl @Inject constructor(
 
     override suspend fun getCategories(): Flow<Resource<List<CategoriesDto>>> {
         return flow {
-            when (val response = getCategoriesDataSource
-                .getCategories()) {
+            when (val response = getCategoriesDataSource.getCategories()) {
                 is Resource.Success -> {
-                    emit(Resource.Success())
+                    emit(Resource.Success(response.data))
                 }
 
                 else -> {

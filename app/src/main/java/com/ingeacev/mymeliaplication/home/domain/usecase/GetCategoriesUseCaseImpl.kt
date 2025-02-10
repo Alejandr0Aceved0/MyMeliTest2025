@@ -10,9 +10,9 @@ import com.ingeacev.mymeliaplication.home.data.repository.CategoriesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCategoriesRemoteUseCaseImpl @Inject constructor(
+class GetCategoriesUseCaseImpl @Inject constructor(
     private val categoriesRepository: CategoriesRepository
-) : GetCategoriesRemoteUseCase {
+) : GetCategoriesUseCase {
 
     override suspend fun invoke(): Flow<Resource<List<CategoriesDto>>> {
         return categoriesRepository.getCategories()
