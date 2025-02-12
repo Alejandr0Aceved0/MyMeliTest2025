@@ -21,7 +21,7 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class DetailProductScreenView @Inject() constructor(
+class DetailProductScreenViewModel @Inject() constructor(
     private val productUseCase: ProductUseCase,
     private val coroutineDispatcher: CoroutineDispatcher
 ) : ViewModel() {

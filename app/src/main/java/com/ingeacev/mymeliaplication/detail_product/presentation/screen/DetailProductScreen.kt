@@ -16,21 +16,21 @@ import com.ingeacev.mymeliaplication.home.data.model.remote.SearchResultDto
 
 @Composable
 fun DetailProductScreen(
-    detailProductScreenView: DetailProductScreenView = hiltViewModel(),
+    detailProductScreenViewModel: DetailProductScreenViewModel = hiltViewModel(),
     searchResultDto: SearchResultDto,
     navigateBack: () -> Unit,
 ) {
 
     LaunchedEffect(key1 = Unit) {
-        detailProductScreenView.getProductDetails(searchResultDto)
+        detailProductScreenViewModel.getProductDetails(searchResultDto)
     }
 
     when (val value =
-        detailProductScreenView.getProductProductsState.collectAsStateWithLifecycle().value) {
+        detailProductScreenViewModel.getProductProductsState.collectAsStateWithLifecycle().value) {
         is Resource.GenericDataError -> {
             GeneralErrorScreen(
                 errorTitle = value.errorMessage ?: "GenericError ",
-                onActionButtonClick = { detailProductScreenView.getProductDetails(searchResultDto) },
+                onActionButtonClick = { detailProductScreenViewModel.getProductDetails(searchResultDto) },
                 actionButtonText = "TryAgain"
             )
         }

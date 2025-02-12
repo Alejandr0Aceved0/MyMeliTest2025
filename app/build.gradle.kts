@@ -79,6 +79,19 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     annotationProcessor(libs.androidx.room.compiler)
 
+    // Unit Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.navigation.testing)
+    testImplementation(libs.robolectric)
+
+    // Mockito (for unit testing)
+    testImplementation("org.mockito:mockito-core:5.11.0") // or latest version
+    testImplementation("org.mockito:mockito-inline:5.11.0") // or latest version
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")// or latest version
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
